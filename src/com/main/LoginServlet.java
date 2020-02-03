@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
         String gender = request.getParameter("gender");
         int age = Integer.parseInt(request.getParameter("age"));
 
-        addUserToDatabase(new User(0, username, password, age, gender));
+        addUserToDatabase(new User(username, password, age, gender));
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
