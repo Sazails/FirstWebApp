@@ -1,29 +1,30 @@
 package com.main;
 
 public class User {
-    private int id;
     private String username;
     private String password;
     private int age;
     private String gender;
 
     public User(){
-        this.id = 0;
         this.username = "";
         this.password = "";
         this.age = 0;
         this.gender = "male";
     }
 
-    public User(int id, String username, String password, int age, String gender){
+    public User(String username, String password, int age, String gender){
         this.username = username;
         this.password = password;
         this.age = age;
         this.gender = gender;
     }
 
-    public int getId() {
-        return id;
+    public UpdateUser(String username, String password, int age, String gender){
+        this.username = username;
+        this.password = password;
+        this.age = age;
+        this.gender = gender;
     }
 
     public String getUsername() {
@@ -40,10 +41,6 @@ public class User {
 
     public String getGender() {
         return gender;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setUsername(String username) {
