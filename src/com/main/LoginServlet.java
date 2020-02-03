@@ -21,40 +21,14 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        int age = Integer.parseInt(request.getParameter("age"));
         String gender = request.getParameter("gender");
+        int age = Integer.parseInt(request.getParameter("age"));
 
-        User newUser = new User(0, username, password, age, gender);
-        addUserToDatabase(newUser);
-
-        String htmlResponse = "<html>";
-        if(newUser != null){
-            // Send to main page?
-            System.out.println("No input error detected, user created.");
-        }else{
-            request.setAttribute("error", "Wrong login details, please try again.");
-        }
+        addUserToDatabase(new User(0, username, password, age, gender));
         request.getRequestDispatcher("/index.jsp").forward(request, response);
-
-        /*System.out.println("username: " + username);
-        System.out.println("password: " + password);
-        System.out.println("age: " + age);
-        System.out.println("gender: " + gender);
-
-        /*PrintWriter writer = response.getWriter();
-
-        String htmlResponse = "<html>";
-        htmlResponse += "<h2>Username: " + username + "<br/>";
-        htmlResponse += "Password: " + password + "<br/>";
-        htmlResponse += "Age: " + age + "<br/>";
-        htmlResponse += "Gender: " + gender + "<br/>";
-        htmlResponse += "</html>";
-
-        writer.println(htmlResponse);*/
     }
 
     public static void addUserToDatabase(User user){
-        //String SQL = "INSERT INTO userdata.table_users(id, username, password, age, gender) " + "VALUES(?,?,?,?,?)";
         String SQL = "INSERT INTO userdata.table_users(username, password, age, gender) " + "VALUES(?,?,?,?)";
 
         try{
